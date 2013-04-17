@@ -7,9 +7,15 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.zip.ZipException;
-import net.youmi.android.AdManager;
+
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.controller.UMServiceFactory;
+
+//import net.youmi.android.AdManager;
+import net.youmi.android.YoumiAdManager;
 import net.youmi.android.banner.AdSize;
 import net.youmi.android.banner.AdView;
+import net.youmi.android.spot.SpotManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,9 +32,11 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -54,11 +62,16 @@ public class MainActivity extends Activity implements OnTouchListener,
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_main);
 		String verName = getVersionName();
 		Log.v("debug00", "verName" + verName);
-		AdManager.getInstance(this).init("4ea66934b6f1bd33",
+		// AdManager.getInstance(this).init("4ea66934b6f1bd33",
+		// "cc66df9e94f8f0b1", false);
+		YoumiAdManager.getInstance(this).init("4ea66934b6f1bd33",
 				"cc66df9e94f8f0b1", false);
+		YoumiAdManager.getInstance(this).setEnableDebugLog(false);
+		SpotManager.getInstance(this).loadSpotAds();
 		// 实例化广告条
 		AdView adView = new AdView(this, AdSize.SIZE_320x50);
 		// 获取要广告条的布局
@@ -79,7 +92,8 @@ public class MainActivity extends Activity implements OnTouchListener,
 			sp = getPreferences(Activity.MODE_PRIVATE);
 			// 解压图片和音频
 			if (sp.getInt("init", 0) == 0
-					|| sp.getString("verName", "1.0").equals(verName)||(!file.exists())) {
+					|| sp.getString("verName", "1.0").equals(verName)
+					|| (!file.exists())) {
 				UnZipAsyncTask unZip = new UnZipAsyncTask();
 				unZip.execute();
 			} else {
@@ -183,6 +197,15 @@ public class MainActivity extends Activity implements OnTouchListener,
 			mMediaPlayer.release();
 			mMediaPlayer = null;
 		}
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		SpotManager.getInstance(this).showSpotAds(this);
+		UMServiceFactory.shareTo(this, SHARE_MEDIA.SINA,
+				"我使用了快速分享接口（UMServiceFactory.share）", null);
+		// TODO Auto-generated method stub
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

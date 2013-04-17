@@ -1,6 +1,7 @@
 package com.ou0618.babytone;
 
-import net.youmi.android.AdManager;
+//import net.youmi.android.AdManager;
+import net.youmi.android.YoumiAdManager;
 import net.youmi.android.dev.AppUpdateInfo;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -26,7 +27,7 @@ public class UpdateHelper extends AsyncTask<Void, Void, AppUpdateInfo> {
 	protected AppUpdateInfo doInBackground(Void... params) {
 		try {
 			// 在doInBackground中调用AdManager的checkAppUpdate即可从有米服务器获得应用更新信息。
-			return AdManager.getInstance(mContext).checkAppUpdate();
+			return YoumiAdManager.getInstance(mContext).checkAppUpdate();
 		} catch (Throwable e) {
 			// TODO: handle exception
 			e.printStackTrace();
