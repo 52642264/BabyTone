@@ -14,7 +14,12 @@
  *       1.0           2013-4-5         張　棟 [SERAKU]<chou@seraku.co.jp>  Create
  **************************************************************************************/
 
-package com.ou0618.babytone;
+package com.ou0618.babytone.util;
+
+import com.ou0618.babytone.R;
+import com.ou0618.babytone.R.id;
+import com.ou0618.babytone.R.layout;
+import com.ou0618.babytone.R.style;
 
 import android.app.Dialog;
 import android.content.Context;

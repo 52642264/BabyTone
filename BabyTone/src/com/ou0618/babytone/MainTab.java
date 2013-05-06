@@ -1,5 +1,10 @@
 package com.ou0618.babytone;
 
+import com.ou0618.babytone.R;
+import com.ou0618.babytone.R.drawable;
+import com.ou0618.babytone.R.id;
+import com.ou0618.babytone.R.layout;
+
 import android.app.ActivityGroup;
 import android.app.TabActivity;
 import android.content.Intent;
@@ -31,11 +36,8 @@ public class MainTab extends ActivityGroup implements OnCheckedChangeListener {
 	  private void initTabs() {
 	    mHost = (TabHost) findViewById(R.id.tabhost);
 	    mHost.setup(this.getLocalActivityManager());
-
-	    newsIntent = new Intent(this, MainActivity.class);
-
-	    myInfoIntent = new Intent(this, MainActivity.class);
-		
+	    newsIntent = new Intent(this, BabyToneActivity.class);
+	    myInfoIntent = new Intent(this, SoundActivity.class);
 	    }
 	  
 	private void initRadios() {
@@ -48,15 +50,17 @@ public class MainTab extends ActivityGroup implements OnCheckedChangeListener {
 	
 	private void setupIntent() {
 
-		mHost.addTab(buildTabSpec("courseRecords","aaaa",
-		        R.drawable.icon,newsIntent));
 		
 		mHost.addTab(buildTabSpec("studentOnline", "bbbbbb",
-		        R.drawable.icon,myInfoIntent));
+		        R.drawable.icon_0,myInfoIntent));
+		mHost.addTab(buildTabSpec("courseRecords","aaaa",
+		        R.drawable.icon_0,newsIntent));
 		mHost.addTab(buildTabSpec("studentOnline", "bbbbbb",
-		        R.drawable.icon,myInfoIntent));
+		        R.drawable.icon_0,myInfoIntent));
 		mHost.addTab(buildTabSpec("studentOnline", "bbbbbb",
-		        R.drawable.icon,myInfoIntent));
+		        R.drawable.icon_0,myInfoIntent));
+		mHost.addTab(buildTabSpec("studentOnline", "bbbbbb",
+		        R.drawable.icon_0,myInfoIntent));
 		
 		}
 	  

@@ -8,6 +8,9 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.zip.ZipException;
 
+import com.ou0618.babytone.util.CustomProgressDialog;
+import com.ou0618.babytone.util.UpdateHelper;
+import com.ou0618.babytone.util.Util;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.controller.UMServiceFactory;
 
@@ -17,11 +20,13 @@ import net.youmi.android.banner.AdSize;
 import net.youmi.android.banner.AdView;
 import net.youmi.android.spot.SpotManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -42,7 +47,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements OnTouchListener,
+public class BabyToneActivity extends Activity implements OnTouchListener,
 		OnGestureListener {
 
 	private static final int MIN_SD_SIZE = 30;
@@ -62,7 +67,7 @@ public class MainActivity extends Activity implements OnTouchListener,
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.activity_main);
 		String verName = getVersionName();
 		Log.v("debug00", "verName" + verName);
@@ -201,9 +206,19 @@ public class MainActivity extends Activity implements OnTouchListener,
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		SpotManager.getInstance(this).showSpotAds(this);
-		UMServiceFactory.shareTo(this, SHARE_MEDIA.SINA,
-				"我使用了快速分享接口（UMServiceFactory.share）", null);
+		// SpotManager.getInstance(this).showSpotAds(this);
+		// UMServiceFactory.shareTo(this, SHARE_MEDIA.SINA,
+		// "我使用了快速分享接口（UMServiceFactory.share）", null);
+		Intent picMessageIntent = new Intent(android.content.Intent.ACTION_SEND);
+		picMessageIntent.setType("image/jpeg");
+		File downloadedPic = new File(Environment.getExternalStorageDirectory()
+				.getPath() + File.separator + "BabyTone/cat.jpg");
+
+		picMessageIntent.putExtra(Intent.EXTRA_STREAM,
+				Uri.fromFile(downloadedPic));
+		// startActivity(picMessageIntent);
+		startActivity(Intent.createChooser(picMessageIntent,
+				"Send your picture using:"));
 		// TODO Auto-generated method stub
 		return super.onOptionsItemSelected(item);
 	}

@@ -36,26 +36,32 @@
                 style="@style/main_tab_bottom"
                 android:layout_marginTop="2.0dip"
                 android:drawableTop="@drawable/icon_1"
-                android:text="@string/main_news" />
+                android:text="@string/icon_str_1" />
 
             <RadioButton
                 android:id="@+id/radio_button1"
                 style="@style/main_tab_bottom"
                 android:layout_marginTop="2.0dip"
                 android:drawableTop="@drawable/icon_2"
-                android:text="@string/main_my_info" />
+                android:text="@string/icon_str_2" />
             <RadioButton
                 android:id="@+id/radio_button3"
                 style="@style/main_tab_bottom"
                 android:layout_marginTop="2.0dip"
                 android:drawableTop="@drawable/icon_3"
-                android:text="@string/main_my_info" />
+                android:text="@string/icon_str_3" />
             <RadioButton
                 android:id="@+id/radio_button4"
                 style="@style/main_tab_bottom"
                 android:layout_marginTop="2.0dip"
                 android:drawableTop="@drawable/icon_4"
-                android:text="@string/main_my_info" />
+                android:text="@string/icon_str_4" />
+            <RadioButton
+                android:id="@+id/radio_button5"
+                style="@style/main_tab_bottom"
+                android:layout_marginTop="2.0dip"
+                android:drawableTop="@drawable/icon_4"
+                android:text="@string/icon_str_5" />
         </RadioGroup>
     </LinearLayout>
 

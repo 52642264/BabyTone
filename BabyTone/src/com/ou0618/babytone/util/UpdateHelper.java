@@ -1,4 +1,4 @@
-package com.ou0618.babytone;
+package com.ou0618.babytone.util;
 
 //import net.youmi.android.AdManager;
 import net.youmi.android.YoumiAdManager;
